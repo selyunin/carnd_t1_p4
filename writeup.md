@@ -160,7 +160,8 @@ the image pipeline:
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-The results of the video pipeline can be seen [here](./project_video_out.mp4)
+The results of the video pipeline can be seen in the [repo](./project_video_out.mp4) or on
+[youtube](https://www.youtube.com/watch?v=gvNrxtdHSds&feature=youtu.be).
 
 
 ---
