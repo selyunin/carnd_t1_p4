@@ -14,7 +14,7 @@
 [//]: # (Image References)
 
 [image1]: ./output_images/pic_1.png "Camera calibration images"
-[image2]: ./output_images/pic_2.jpg "Chessboard Corners"
+[image2]: ./output_images/pic_2.png "Chessboard Corners"
 [image3]: ./output_images/pic_3.png "Undistorted Images"
 [image4]: ./output_images/pic_4.png "Undistorted Road Images"
 [image5]: ./output_images/pic_5.png "Thresholded images"
