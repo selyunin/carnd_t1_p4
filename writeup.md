@@ -25,8 +25,11 @@
 [video1]: ./project_video.mp4 "Video"
 
 The code for the project: is presented in (1) Jupyter notebook file 
-`Advanced Lane Finding Project.ipynb` and as 
-(1) a standalone command-line project, which include the files:
+[`Advanced Lane Finding
+Project.ipynb`](https://github.com/selyunin/carnd_t1_p4/blob/master/Advanced%20Lane%20Finding%20Project.ipynb) 
+(with the corresponding
+[HTML](https://github.com/selyunin/carnd_t1_p4/blob/master/Advanced%2BLane%2BFinding%2BProject.html))
+and as (1) a standalone command-line project, which include the files:
 * [Camera.py](https://github.com/selyunin/carnd_t1_p4/blob/master/Camera.py)
 * [ImageHandler.py](https://github.com/selyunin/carnd_t1_p4/blob/master/ImageHandler.py)
 * [Line.py](https://github.com/selyunin/carnd_t1_p4/blob/master/Line.py)
@@ -166,4 +169,10 @@ The results of the video pipeline can be seen [here](./project_video_out.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-
+The pipeline performs relatively well and robust on the project video. 
+To make it more efficient, we can improve detecting lanes algorithm and probably
+drop processing of some frames. The method with a convolution did not
+perform well on the road images, but it is interested to explore this 
+possibility further and tweaking convolution to detecting the lanes.
+Another possibility to explore, is to use wavelet transform on a
+binary images to detect the lane lines.
