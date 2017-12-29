@@ -42,7 +42,7 @@ class ImageHandler():
         avg_right_offset = self.right_line.get_offset()
         avg_left_rad = self.left_line.get_curvature()
         avg_right_rad = self.right_line.get_curvature()
-        offset_from_center = avg_left_offset + avg_right_offset
+        offset_from_center = (avg_left_offset + avg_right_offset) / 2.
         newwarp = self.visualize_final(bin_img)   
         result = cv2.addWeighted(undist, 1, newwarp, 0.2, 0)
         font = cv2.FONT_HERSHEY_SIMPLEX
