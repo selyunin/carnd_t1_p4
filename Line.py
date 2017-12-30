@@ -34,12 +34,33 @@ class Line():
         self.poly_x    = deque([], self.N_WINDOW)
         self.curvature = deque([], self.N_WINDOW)
         self.offset    = deque([], self.N_WINDOW)
+        self.x_min     = deque([], self.N_WINDOW)
+        self.x_max     = deque([], self.N_WINDOW)
     
-    #write method to 1) 
     def set_current_poly_fit(self, poly_fit, poly_y, poly_x):
-        self.poly_fit.append(poly_fit)
-        self.poly_y.append(poly_y)
-        self.poly_x.append(poly_x)
+        y_max = max(poly_y)
+        y_min = min(poly_y)
+        x_max = poly_fit[0]* y_max**2 + \
+                poly_fit[1]* y_max + \
+                poly_fit[2]
+                
+        x_min = poly_fit[0]* y_min**2 + \
+                poly_fit[1]* y_min + \
+                poly_fit[2]
+        if len(self.x_min) == 0 :
+            self.poly_fit.append(poly_fit)
+            self.poly_y.append(poly_y)
+            self.poly_x.append(poly_x)
+            self.x_min.append(x_min)
+            self.x_max.append(x_max)
+        elif abs((self.x_min[-1] - x_min)/self.x_min[-1]) <= 0.15 and \
+             abs((self.x_max[-1] - x_max)/self.x_max[-1]) <= 0.15 :
+            self.poly_fit.append(poly_fit)
+            self.poly_y.append(poly_y)
+            self.poly_x.append(poly_x)
+            self.x_min.append(x_min)
+            self.x_max.append(x_max)
+
 
     def set_current_curvature(self, rad):
         self.curvature.append(rad)
@@ -52,3 +73,7 @@ class Line():
     
     def get_offset(self):
         return sum(self.offset)/self.N_WINDOW
+    
+    def get_poly(self):
+        return self.poly_y[-1], self.poly_x[-1]
+#         return np.average(self.poly_y), np.average(self.poly_x)

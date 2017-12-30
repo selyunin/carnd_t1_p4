@@ -346,9 +346,27 @@ class ImageHandler():
         color_warp[right_lane_indices] = [255, 0, 0]
         color_warp[left_lane_indices] = [255, 0, 0]
         left_poly_fit, left_poly_y, left_poly_x = self.get_left_lane_poly_fit(img)
+#         print("left line: {:3.3E} x^2 + {:3.3E}x + {:3.3E}".format(left_poly_fit[0], left_poly_fit[1], left_poly_fit[2]))
+        
+        #
+        y_max = max(left_poly_y)
+        y_min = min(left_poly_y)
+        x_max = left_poly_fit[0]* y_max**2 + \
+                left_poly_fit[1]* y_max + \
+                left_poly_fit[2]
+                
+        x_min = left_poly_fit[0]* y_min**2 + \
+                left_poly_fit[1]* y_min + \
+                left_poly_fit[2]
+#         print("y_min {}".format(y_min))
+#         print("y_max {}".format(y_max))
+#         print("x_min: {:4.3E}\t\tx_max: {:4.3E}".format(x_min, x_max))
+        #
         right_poly_fit, right_poly_y, right_poly_x = self.get_right_lane_poly_fit(img)
-        pts_left = np.array([np.transpose(np.vstack([left_poly_x, left_poly_y]))])
-        pts_right = np.array([np.flipud(np.transpose(np.vstack([right_poly_x, right_poly_y])))])
+        avg_left_poly_y, avg_left_poly_x = self.left_line.get_poly()
+        avg_right_poly_y, avg_right_poly_x = self.right_line.get_poly()
+        pts_left = np.array([np.transpose(np.vstack([avg_left_poly_x, avg_left_poly_y]))])
+        pts_right = np.array([np.flipud(np.transpose(np.vstack([avg_right_poly_x, avg_right_poly_y])))])
         pts = np.hstack((pts_left, pts_right))
         cv2.fillPoly(color_warp, np.int_([pts]), (0,255, 0))
         # color_warp[right_lane_indices] = [255,0, 0]

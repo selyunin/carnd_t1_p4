@@ -17,8 +17,7 @@ class VideoHandler():
         self.out_clip_name = args[0].output_video
 #         self.video_clip = VideoFileClip(self.clip_name).subclip(0, self.subclip_length)
 #         self.video_clip = VideoFileClip(self.clip_name).subclip(20, 25)
-#         self.video_clip = VideoFileClip(self.clip_name).subclip(23, 25)
-#         self.video_clip = VideoFileClip(self.clip_name).subclip(38, 42)
+#         self.video_clip = VideoFileClip(self.clip_name).subclip(38, 40)
         self.video_clip = VideoFileClip(self.clip_name)
         self.frame_counter = 0
         self.image_handler = ImageHandler()
@@ -30,5 +29,5 @@ class VideoHandler():
     def process_image(self, img):
         self.frame_counter += 1
         out_img = self.image_handler.process_image(img)
-        print("Processing frame: {} of shape {}".format(self.frame_counter, img.shape))
+#         print("Processing frame: {} of shape {}".format(self.frame_counter, img.shape))
         return out_img
